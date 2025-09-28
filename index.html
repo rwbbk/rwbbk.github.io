@@ -1,103 +1,102 @@
 <!DOCTYPE html>
-
 <html>
 
-
-
 <head>
-
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
-
     <meta name="viewport"
-
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-
     <meta http-equiv="Pragma" content="no-cache" />
-
     <meta name="apple-mobile-web-app-capable" content="yes">
-
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
     <meta name="screen-orientation" content="portrait" />
-
     <meta name="format-detection" content="telephone=no">
-
     <meta name="full-screen" content="yes">
-
     <meta name="x5-fullscreen" content="true">
-
     <title>荣威版本库</title>
-
     <link rel="stylesheet" href="base.css?v=1.03" />
-
     <link rel="stylesheet" href="style6.css" />
-
 </head>
 
-
-
 <body>
-
     <div id="eCover" class="app style6 theme1">
-
         <div class="top flex">
-
             <div class="logo">
-
                 <img id="eLogo" src="logo.png" alt="">
-
             </div>
-
             <div class="desc">
-
                 <h1>荣威版本库官网</h1>
-
                 <p>荣威版本库安卓+苹果GM游戏免费分享平台</p>
-
                 <p>荣威版本库GM游戏资源网，内购GM破解游戏，工具箱</p>
-
             </div>
-
         </div>
-
         <a id="eBtn" href="javascript:;" class="btn">GM手游立即下载(地址1)</a>
-
         <a id="eBtn2" href="javascript:;" class="btn">荣威版本库GM游戏下载(地址2)</a>
-
         <div class="slogan">
-
             <span>最新版本：V2025.09</span>
-
         </div>
-
         <div id="eCovers" class="covers flex"></div>
-
         <div class="slogan">
-
             <span>GM游戏资源官网，最新网址gm177.cn各种破解无限资源+内购游戏</span>
-
         </div>
-
     </div>
 
-
-
     <script type="text/javascript">
-
         var $ = function (ele) {
-
             return document.querySelector(ele);
-
+        }
+        //配置
+        var config = {
+            logo: 'logo.png', //自定义logo图片
+            iPhone_download_url: "https://wap.tsyule.cn/hv7007000-7.html", // iPhone下载链接
+            android_download_url: "https://wap.tsyule.cn/hv7007000-7.html", // Android下载链接
+            iPhone_download_url2: "https://zs.rwbbk.in/", // iPhone下载链接
+            android_download_url2: "https://zs.rwbbk.in/", // Android下载链接
+            open_app_url: "",
+            covers: [   //APP截图列表
+                'https://sysimage.tsyule.cn/2025/08/18/68a2d1d8572d2.png',
+                'https://sysimage.tsyule.cn/2025/07/10/686f66d29aae4.png',
+                'https://sysimage.tsyule.cn/2025/05/08/681c6b8f1c31d.png',
+                'https://sysimage.tsyule.cn/2025/03/07/67cab6f8229a1.png'
+            ]
+        }
+        var env = function () {
+            var inBrowser = typeof window !== 'undefined'
+            var UA = inBrowser && window.navigator.userAgent.toLowerCase();
+            return {
+                isAndroid: UA && UA.indexOf('android') > 0,
+                isIOS: UA && /iphone|ipad|ipod|ios/.test(UA),
+                isWechat: UA && UA.indexOf('micromessenger') > -1
+            }
         }
 
-        //配置
+        window.onload = function () {
+            var eCovers = $('#eCovers');
+            var eBtn = $('#eBtn');
+            var eLogo = $('#eLogo');
+            var eBtn2 = $('#eBtn2');
+            
+            if (env().isAndroid) {
+                open_app_url = config.android_download_url;
+                open_app_url2 = config.android_download_url2;
+            } else {
+                open_app_url = config.iPhone_download_url;
+                open_app_url2 = config.iPhone_download_url2;
+            }
+            eBtn.href = open_app_url;
+            eBtn2.href = open_app_url2;
+            //logo图片设置
+            eLogo.src = config.logo;
 
-        var config = {
+            //设置封面
+            var coverHTML = ''
+            for (var i = 0; i <= config.covers.length - 1; i++) {
+                var item = config.covers[i];
+                coverHTML += '<img src="' + item + '" alt="' + item + '" />';
+            }
+            eCovers.innerHTML = coverHTML;
+        }
+    </script>
+</body>
 
-            logo: 'logo.png', //自定义logo图片
-
-            iPhone_download_url: "https://wap.tsyule.cn/hv7007000-7.html", // iPhone下载链接
-
-            android_download_url: "https://wap.tsyule.cn/hv7007000-7.ht
+</html>
